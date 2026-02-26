@@ -1,31 +1,14 @@
 # 🔬 Physics Concept Explorer - Visual Simulator
 
-> **FOP Mini Project** | C Programming | Multiple Modules | **No Headers Architecture**
-
 ---
 
 ## 📋 Project Overview
 
-A modular Physics simulation system split into separate functional components. The project emphasizes visual feedback through ASCII animations/graphs and clear UI separation.
+A modular Physics simulation system split into separate functional components. The project emphasizes visual feedback through ASCII animations/graphs and other visual ways.
 
 ---
 
-## 🏗️ Project Structure
-
-This project follows a "No Headers" approach where each module is a standalone `.c` file, coordinated by `main.c`.
-
-| File | Module | Description |
-|---|--------|--------------|
-| **`main.c`** | Controller | Unified menu, animations, and coordination |
-| **`projectile.c`** | Projectile Motion | Launch simulators with trajectory graphs |
-| **`ohms.c`** | Resistor Network | Series/Parallel equivalent resistance simulator |
-| **`shm.c`** | SHM Visualizer | Sine wave generator for harmonic motion |
-| **`wave.c`** | Interference | Wave superposition and interference patterns |
-| **`refraction.c`** | Optics | Snell's Law and Total Internal Reflection simulator |
-
----
-
-## ✨ Features & Improvements
+## Features
 
 1.  **Modular Design**: Every physics concept has its own `.c` file.
 2.  **No Header Files**: Prototypes are used directly in `main.c` for linking.
@@ -37,17 +20,8 @@ This project follows a "No Headers" approach where each module is a standalone `
 
 ---
 
-## 🚀 How to Compile & Run
 
-### Using GCC:
-```bash
-gcc main.c projectile.c ohms.c shm.c wave.c refraction.c -o physics_explorer.exe -lm
-./physics_explorer.exe
-```
-
----
-
-## 📊 Summary of Modules
+## Summary of Modules
 
 *   **Projectile**: Calculates range, height, and time with a 2D plot.
 *   **Resistors**: Handles $N$ resistors in series or parallel configurations.
