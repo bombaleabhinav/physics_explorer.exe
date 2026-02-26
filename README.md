@@ -1,8 +1,8 @@
-# 🔬 Physics Concept Explorer - Visual Simulator
+# Physics Explorer - Visual Simulator
 
 ---
 
-## 📋 Project Overview
+## Project Overview
 
 A modular Physics simulation system split into separate functional components. The project emphasizes visual feedback through ASCII animations/graphs and other visual ways.
 
@@ -11,12 +11,10 @@ A modular Physics simulation system split into separate functional components. T
 ## Features
 
 1.  **Modular Design**: Every physics concept has its own `.c` file.
-2.  **No Header Files**: Prototypes are used directly in `main.c` for linking.
-3.  **UI/UX**:
+2.  **UI/UX**:
     *   **ANSI Colors**: Vivid Cyan, Green, Yellow, and Red highlights.
     *   **Animations**: Loading dots and clear transitions.
     *   **ASCII Art**: Trajectory graphs, step waves, and circuit diagrams.
-4.  **Optimized Ohm's Law**: Focused specifically on Series and Parallel resistor networks as requested.
 
 ---
 
@@ -28,3 +26,5 @@ A modular Physics simulation system split into separate functional components. T
 *   **SHM**: Displays a scrolling sine wave based on user-defined amplitude/frequency.
 *   **Waves**: Shows constructive/destructive interference between two user-defined waves.
 *   **Optics**: Calculates refraction angles and detects total internal reflection cases.
+
+---
