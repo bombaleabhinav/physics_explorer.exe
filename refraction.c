@@ -66,7 +66,7 @@ void runRefractionSimulator() {
         printf("  | Note                     : %ssin(r) = %.4f > 1 => TIR%s\n",
                CLR_RED, sinR, CLR_RESET);
     } else {
-        printf("  | Angle of Refraction (R)  : %s%.2f°%s\n", CLR_WHITE, angleR_deg, CLR_RESET);
+        printf("  | Angle of Refraction (R)  : %s%.2f%s\n", CLR_WHITE, angleR_deg, CLR_RESET);
         printf("  | Snell's Law              : %sn1*sin(i) = n2*sin(r)%s\n",
                CLR_CYAN, CLR_RESET);
         printf("  |   %.4f * sin(%.2f) = %.4f * sin(%.2f)\n",
