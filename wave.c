@@ -12,14 +12,12 @@
 #define CLR_BOLD    "\033[1m"
 #define CLR_RESET   "\033[0m"
 
-// ---------- helper: draw a single waveform ----------
 static void drawWave(double amp, double freq, const char* color,
                      const char* tag, int rows, int cols)
 {
     double maxA = (amp > 0) ? amp : 1;
 
     for (int i = rows; i >= -rows; i--) {
-        /* y-axis labels */
         if      (i == rows)  printf("  %s+A%s |", color, CLR_RESET);
         else if (i == 0)     printf("   0 |");
         else if (i == -rows) printf("  %s-A%s |", color, CLR_RESET);
@@ -36,13 +34,11 @@ static void drawWave(double amp, double freq, const char* color,
         }
         printf("\n");
     }
-    /* x-axis */
     printf("      ");
     for (int j = 0; j < cols; j++) printf("-");
     printf(" t ->\n");
 }
 
-// ---------- helper: draw the resultant of two waves ----------
 static void drawResultant(double a1, double f1,
                           double a2, double f2,
                           const char* color, const char* tag,
@@ -75,7 +71,6 @@ static void drawResultant(double a1, double f1,
     printf(" t ->\n");
 }
 
-// ---------- helper: print wave details ----------
 static void printWaveInfo(const char* label, const char* color,
                           double amp, double freq)
 {
@@ -93,7 +88,6 @@ static void printWaveInfo(const char* label, const char* color,
     printf("  %s---------------------------------------%s\n", color, CLR_RESET);
 }
 
-// ===================== PUBLIC ENTRY POINT =====================
 void runWaveSuperposition() {
     double a1, f1, a2, f2;
     int rows = 10;
@@ -106,25 +100,21 @@ void runWaveSuperposition() {
     printf("  %s%s========================================================%s\n",
            CLR_BOLD, CLR_CYAN, CLR_RESET);
 
-    /* -------- Input -------- */
     printf("\n  %sWave 1 ->%s Enter Amplitude & Frequency (Hz): ", CLR_YELLOW, CLR_RESET);
     scanf("%lf %lf", &a1, &f1);
     printf("  %sWave 2 ->%s Enter Amplitude & Frequency (Hz): ", CLR_YELLOW, CLR_RESET);
     scanf("%lf %lf", &a2, &f2);
 
-    /* -------- Wave 1 Details -------- */
     printWaveInfo("WAVE 1", CLR_YELLOW, a1, f1);
     printf("\n  %s%sWaveform - Wave 1:%s\n\n", CLR_BOLD, CLR_YELLOW, CLR_RESET);
     drawWave(a1, f1, CLR_YELLOW, "#", rows, cols);
 
-    /* -------- Wave 2 Details -------- */
     printWaveInfo("WAVE 2", CLR_MAGENTA, a2, f2);
     printf("\n  %s%sWaveform - Wave 2:%s\n\n", CLR_BOLD, CLR_MAGENTA, CLR_RESET);
     drawWave(a2, f2, CLR_MAGENTA, "*", rows, cols);
 
-    /* -------- Resultant Wave -------- */
-    double aMax = fabs(a1) + fabs(a2);   // max possible amplitude
-    double aMin = fabs(fabs(a1) - fabs(a2)); // min possible amplitude
+    double aMax = fabs(a1) + fabs(a2);
+    double aMin = fabs(fabs(a1) - fabs(a2));
 
     printf("\n  %s%s========================================================%s\n",
            CLR_BOLD, CLR_GREEN, CLR_RESET);
@@ -138,8 +128,7 @@ void runWaveSuperposition() {
     printf("  | Min Amplitude |A1-A2| : %s%.4f%s\n", CLR_WHITE, aMin, CLR_RESET);
 
     if (f1 == f2) {
-        /* Same frequency -> pure constructive / same frequency resultant */
-        double aR = sqrt(a1*a1 + a2*a2 + 2*a1*a2);  // phase diff = 0
+        double aR = sqrt(a1*a1 + a2*a2 + 2*a1*a2);
         printf("  | Resultant Amp (same f): %s%.4f%s\n", CLR_WHITE, aR, CLR_RESET);
         printf("  | Frequency             : %s%.4f Hz%s\n", CLR_WHITE, f1, CLR_RESET);
         printf("  | Ang. Freq  (w)        : %s%.4f rad/s%s\n",
@@ -151,7 +140,6 @@ void runWaveSuperposition() {
         printf("  | Equation              : %sy = %.2f * sin(2pi * %.2f * t)%s\n",
                CLR_GREEN, aR, f1, CLR_RESET);
     } else {
-        /* Different frequencies -> beats */
         double fBeat = fabs(f1 - f2);
         double fAvg  = (f1 + f2) / 2.0;
         printf("  | Beat Frequency        : %s%.4f Hz%s\n", CLR_WHITE, fBeat, CLR_RESET);

@@ -28,7 +28,7 @@ void runSHMSimulator() {
         else printf("    |");
 
         for (int j = 0; j < cols; j++) {
-            t = (double)j / cols; // Normalized time
+            t = (double)j / cols;
             double displacement = A * sin(2 * PI * freq * t);
             int scaledVal = (int)((displacement / A) * rows);
             

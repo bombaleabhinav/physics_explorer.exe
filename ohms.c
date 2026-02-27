@@ -18,7 +18,7 @@ void runResistorSimulator() {
     printf("Enter number of resistors: ");
     scanf("%d", &n);
 
-    if (choice == 1) { // Series
+    if (choice == 1) {
         for (int i = 1; i <= n; i++) {
             printf("  Enter resistance for R%d (Ohms): ", i);
             scanf("%lf", &r);
@@ -28,7 +28,7 @@ void runResistorSimulator() {
         printf("%s  Equivalent Resistance (Req) = %.2f Ohms%s\n", CLR_GREEN, total, CLR_RESET);
         printf("\n   [R1]--[R2]--...--[Rn]\n");
     } 
-    else if (choice == 2) { // Parallel
+    else if (choice == 2) {
         double inverseTotal = 0;
         for (int i = 1; i <= n; i++) {
             printf("  Enter resistance for R%d (Ohms): ", i);

@@ -1,13 +1,3 @@
-/*
- * ================================================================
- *   PHYSICS CONCEPT EXPLORER - MAIN CONTROLLER
- * ================================================================
- *  FOP Mini Project
- *  Note: This project is split into multiple files without .h files.
- *  Functions are linked at compile time or included via prototypes.
- * ================================================================
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -70,7 +60,7 @@ void animateLoading(const char* label) {
 }
 
 int main() {
-    // Enable ANSI colors for Windows 10+
+    // Enable ANSI colors for windows
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;

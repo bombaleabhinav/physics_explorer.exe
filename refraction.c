@@ -35,13 +35,12 @@ void runRefractionSimulator() {
     printf("  %sEnter Angle of Incidence%s  (degrees, 0-90)     : ", CLR_YELLOW, CLR_RESET);
     scanf("%lf", &angleI);
 
-    /* clamp to 0-90 */
     if (angleI < 0)  angleI = 0;
     if (angleI > 90) angleI = 90;
 
     double radI = angleI * PI / 180.0;
     double sinR = (n1 / n2) * sin(radI);
-    int    tir  = (sinR > 1.0 || sinR < -1.0);   /* total internal reflection */
+    int    tir  = (sinR > 1.0 || sinR < -1.0);
 
     double angleR_deg = 0;
     double radR       = 0;
@@ -50,7 +49,6 @@ void runRefractionSimulator() {
         angleR_deg = radR * 180.0 / PI;
     }
 
-    /* ---------- Results ---------- */
     printf("\n  %s---------------------------------------%s\n", CLR_CYAN, CLR_RESET);
     printf("  | n1                       : %s%.4f%s\n", CLR_WHITE, n1, CLR_RESET);
     printf("  | n2                       : %s%.4f%s\n", CLR_WHITE, n2, CLR_RESET);
@@ -75,77 +73,65 @@ void runRefractionSimulator() {
     }
     printf("  %s---------------------------------------%s\n", CLR_CYAN, CLR_RESET);
 
-    /* ========== Build the diagram ========== */
     char  grid[ROWS][COLS];
-    char  colr[ROWS][COLS];   /* 0=default, 1=yellow(incident), 2=magenta(reflect), 3=green(refract), 4=cyan(normal), 5=blue(interface) */
+    char  colr[ROWS][COLS];
 
-    /* fill blank */
     for (int r = 0; r < ROWS; r++)
         for (int c = 0; c < COLS; c++) {
             grid[r][c] = ' ';
             colr[r][c] = 0;
         }
 
-    /* draw the normal (vertical dashed line) */
     for (int r = 0; r < ROWS; r++) {
         grid[r][HALF_C] = '|';
-        colr[r][HALF_C] = 4;   /* cyan */
+        colr[r][HALF_C] = 4;
     }
 
-    /* draw the interface (horizontal line) */
     for (int c = 0; c < COLS; c++) {
         grid[HALF][c] = '-';
-        colr[HALF][c] = 5;     /* blue */
+        colr[HALF][c] = 5;
     }
     grid[HALF][HALF_C] = '+';
     colr[HALF][HALF_C] = 5;
 
-    /* slopes:  columns per row  =  tan(angle) */
-    double slopeI = tan(radI);       /* incident */
-    double slopeR_refl = tan(radI);  /* reflected (same angle, other side) */
+    double slopeI = tan(radI);
+    double slopeR_refl = tan(radI);
     double slopeRefr   = tir ? 0 : tan(radR);
 
-    int rayLen = HALF;  /* number of rows to draw each ray */
+    int rayLen = HALF;
 
-    /* --- Incident ray: upper half, going UP from center, left side --- */
     for (int step = 1; step <= rayLen; step++) {
-        int r = HALF - step;                          /* row above interface */
-        int c = HALF_C - (int)(step * slopeI + 0.5);  /* to the left */
+        int r = HALF - step;
+        int c = HALF_C - (int)(step * slopeI + 0.5);
         if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
             grid[r][c] = '\\';
-            colr[r][c] = 1;   /* yellow */
+            colr[r][c] = 1;
         }
     }
 
-    /* --- Reflected ray: upper half, going UP from center, right side --- */
     for (int step = 1; step <= rayLen; step++) {
         int r = HALF - step;
         int c = HALF_C + (int)(step * slopeR_refl + 0.5);
         if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
             grid[r][c] = '/';
-            colr[r][c] = 2;   /* magenta */
+            colr[r][c] = 2;
         }
     }
 
-    /* --- Refracted ray (or TIR reflected back into medium 1) --- */
     if (tir) {
-        /* TIR: all light reflects, draw a stronger reflected ray (already drawn) */
-        /* optionally draw a faint indication on the lower half -- skip for clarity */
     } else {
         for (int step = 1; step <= rayLen; step++) {
-            int r = HALF + step;                            /* row below */
-            int c = HALF_C + (int)(step * slopeRefr + 0.5); /* bends right */
+            int r = HALF + step;
+            int c = HALF_C + (int)(step * slopeRefr + 0.5);
             if (r >= 0 && r < ROWS && c >= 0 && c < COLS) {
                 grid[r][c] = '\\';
-                colr[r][c] = 3;   /* green */
+                colr[r][c] = 3;
             }
         }
     }
 
-    /* ========== Print the diagram ========== */
     printf("\n  %s%sRay Diagram:%s\n\n", CLR_BOLD, CLR_YELLOW, CLR_RESET);
 
-    /* legend */
     printf("    %s\\%s Incident   %s/%s Reflected   ",
            CLR_YELLOW, CLR_RESET, CLR_MAGENTA, CLR_RESET);
     if (!tir) printf("%s\\%s Refracted", CLR_GREEN, CLR_RESET);
@@ -153,7 +139,6 @@ void runRefractionSimulator() {
     printf("\n\n");
 
     for (int r = 0; r < ROWS; r++) {
-        /* medium label on the left */
         if (r == 2)          printf("  %sn1=%.2f%s  ", CLR_YELLOW, n1, CLR_RESET);
         else if (r == ROWS-3) printf("  %sn2=%.2f%s  ", CLR_GREEN,  n2, CLR_RESET);
         else                  printf("          ");
@@ -171,7 +156,6 @@ void runRefractionSimulator() {
             printf("%s%c%s", cc, grid[r][c], CLR_RESET);
         }
 
-        /* label the normal at top */
         if (r == 0) printf("  Normal");
         printf("\n");
     }

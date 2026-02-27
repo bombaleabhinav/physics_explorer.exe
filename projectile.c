@@ -4,7 +4,6 @@
 #define PI 3.14
 #define G  9.8
 
-// colro codes
 #define CLR_CYAN    "\033[96m"
 #define CLR_GREEN   "\033[92m"
 #define CLR_YELLOW  "\033[93m"
@@ -33,7 +32,6 @@ void runProjectileSimulator() {
 
     printf("\n%sTrajectory Visualization:%s\n", CLR_BOLD, CLR_RESET);
     
-    // Simple Graph
     int rows = 10, cols = 40;
     for (int i = rows; i >= 0; i--) {
         printf("%2d |", i);
