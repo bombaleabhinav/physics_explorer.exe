@@ -11,7 +11,7 @@
 #define SLEEP(ms) usleep((ms) * 1000)
 #endif
 
-// ANSI Color Codes
+// ANSI Colro Codes
 #define CLR_RESET   "\033[0m"
 #define CLR_BOLD    "\033[1m"
 #define CLR_RED     "\033[91m"
@@ -22,14 +22,14 @@
 #define CLR_CYAN    "\033[96m"
 #define CLR_WHITE   "\033[97m"
 
-// Prototypes for functions in other files
+
 void runProjectileSimulator();
 void runResistorSimulator();
 void runSHMSimulator();
 void runWaveSuperposition();
 void runRefractionSimulator();
 
-// Global Utility Functions
+
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
