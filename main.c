@@ -97,9 +97,9 @@ int main() {
         switch (choice) {
             case 1: animateLoading("Initializing Projectile Simulator"); runProjectileSimulator(); break;
             case 2: animateLoading("Loading Circuit Data"); runResistorSimulator(); break;
-            case 3: animateLoading("Calibrating Oscilloscope"); runSHMSimulator(); break;
-            case 4: animateLoading("Synchronizing Wave Phases"); runWaveSuperposition(); break;
-            case 5: animateLoading("Aligning Optical Rails"); runRefractionSimulator(); break;
+            case 3: animateLoading("Starting SHM Visualizer"); runSHMSimulator(); break;
+            case 4: animateLoading("Starting Wave Superposition"); runWaveSuperposition(); break;
+            case 5: animateLoading("Starting Refraction Simulator"); runRefractionSimulator(); break;
             case 0: 
                 printf("\n  %sClosing Physics Explorer. Goodbye!%s\n", CLR_MAGENTA, CLR_RESET);
                 SLEEP(500);

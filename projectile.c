@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 
-#define PI 3.14159265
+#define PI 3.14
 #define G  9.8
 
-// Local UI Macros (since no headers used)
+// colro codes
 #define CLR_CYAN    "\033[96m"
 #define CLR_GREEN   "\033[92m"
 #define CLR_YELLOW  "\033[93m"
@@ -37,7 +37,7 @@ void runProjectileSimulator() {
     int rows = 10, cols = 40;
     for (int i = rows; i >= 0; i--) {
         printf("%2d |", i);
-        for (int j = 0; j <= cols; j++) {
+        for (int j = 0; j <= cols; j++) {j
             double t = (double)j / cols * time;
             double y = v * sin(rad) * t - 0.5 * G * t * t;
             int scaledY = (int)((y / height) * rows);
