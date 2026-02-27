@@ -11,7 +11,6 @@
 #define SLEEP(ms) usleep((ms) * 1000)
 #endif
 
-// ANSI Colro Codes
 #define CLR_RESET   "\033[0m"
 #define CLR_BOLD    "\033[1m"
 #define CLR_RED     "\033[91m"
@@ -60,7 +59,6 @@ void animateLoading(const char* label) {
 }
 
 int main() {
-    // Enable ANSI colors for windows
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
@@ -80,7 +78,7 @@ int main() {
         
         printf("\n  %sEnter Choice:%s ", CLR_CYAN, CLR_RESET);
         if (scanf("%d", &choice) != 1) {
-            while (getchar() != '\n'); // Clear buffer
+            while (getchar() != '\n');
             continue;
         }
 

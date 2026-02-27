@@ -13,10 +13,10 @@
 #define CLR_RESET   "\033[0m"
 
 
-#define ROWS   21          /* total rows  */
-#define COLS   51          /* total cols  */
-#define HALF   (ROWS / 2)  /* row index of the interface*/
-#define HALF_C (COLS / 2)  /* col index of the normal*/
+#define ROWS   21
+#define COLS   51
+#define HALF   (ROWS / 2)
+#define HALF_C (COLS / 2)
 
 void runRefractionSimulator() {
     double n1, n2, angleI;
