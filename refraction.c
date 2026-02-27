@@ -49,17 +49,18 @@ void runRefractionSimulator() {
         angleR_deg = radR * 180.0 / PI;
     }
 
+
     printf("\n  %s---------------------------------------%s\n", CLR_CYAN, CLR_RESET);
     printf("  | n1                       : %s%.4f%s\n", CLR_WHITE, n1, CLR_RESET);
     printf("  | n2                       : %s%.4f%s\n", CLR_WHITE, n2, CLR_RESET);
-    printf("  | Angle of Incidence  (i)  : %s%.2f°%s\n", CLR_WHITE, angleI, CLR_RESET);
-    printf("  | Angle of Reflection (r)  : %s%.2f°%s\n", CLR_WHITE, angleI, CLR_RESET);
+    printf("  | Angle of Incidence  (i)  : %s%.2f%s\n", CLR_WHITE, angleI, CLR_RESET);
+    printf("  | Angle of Reflection (r)  : %s%.2f%s\n", CLR_WHITE, angleI, CLR_RESET);
 
     if (tir) {
         printf("  | Angle of Refraction      : %sTOTAL INTERNAL REFLECTION%s\n",
                CLR_RED, CLR_RESET);
         double critAngle = asin(n2 / n1) * 180.0 / PI;
-        printf("  | Critical Angle           : %s%.2f°%s\n", CLR_WHITE, critAngle, CLR_RESET);
+        printf("  | Critical Angle           : %s%.2f%s\n", CLR_WHITE, critAngle, CLR_RESET);
         printf("  | Snell's Law              : %sn1*sin(i) = n2*sin(r)%s\n",
                CLR_CYAN, CLR_RESET);
         printf("  | Note                     : %ssin(r) = %.4f > 1 => TIR%s\n",
@@ -73,8 +74,10 @@ void runRefractionSimulator() {
     }
     printf("  %s---------------------------------------%s\n", CLR_CYAN, CLR_RESET);
 
+
     char  grid[ROWS][COLS];
-    char  colr[ROWS][COLS];
+    char  colr[ROWS][COLS];  
+
 
     for (int r = 0; r < ROWS; r++)
         for (int c = 0; c < COLS; c++) {
@@ -82,10 +85,12 @@ void runRefractionSimulator() {
             colr[r][c] = 0;
         }
 
+
     for (int r = 0; r < ROWS; r++) {
         grid[r][HALF_C] = '|';
         colr[r][HALF_C] = 4;
     }
+
 
     for (int c = 0; c < COLS; c++) {
         grid[HALF][c] = '-';
@@ -94,12 +99,14 @@ void runRefractionSimulator() {
     grid[HALF][HALF_C] = '+';
     colr[HALF][HALF_C] = 5;
 
-    double slopeI = tan(radI);
-    double slopeR_refl = tan(radI);
+
+    double slopeI = tan(radI);      
+    double slopeR_refl = tan(radI);  
     double slopeRefr   = tir ? 0 : tan(radR);
 
     int rayLen = HALF;
 
+  
     for (int step = 1; step <= rayLen; step++) {
         int r = HALF - step;
         int c = HALF_C - (int)(step * slopeI + 0.5);
@@ -130,7 +137,9 @@ void runRefractionSimulator() {
         }
     }
 
+
     printf("\n  %s%sRay Diagram:%s\n\n", CLR_BOLD, CLR_YELLOW, CLR_RESET);
+
 
     printf("    %s\\%s Incident   %s/%s Reflected   ",
            CLR_YELLOW, CLR_RESET, CLR_MAGENTA, CLR_RESET);
