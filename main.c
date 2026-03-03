@@ -53,7 +53,6 @@ void clear_screen() {
 
 void print_banner() {
     printf("=============================================\n");
-    printf("     FORENSIC FLOW - AML DEMO ENGINE\n");
     printf("     Graph Based Fraud Detection (C)\n");
     printf("=============================================\n\n");
 }
