@@ -241,23 +241,53 @@ int main() {
 
     load_csv(filepath);
 
-    clear_screen();
-    print_banner();
-
-    printf("Dataset Loaded Successfully!\n");
-    printf("Total Accounts: %d\n\n", nodeCount);
-
-    printf("Running Full Analysis...\n");
-    printf("--------------------------------------------\n");
-
-    detect_smurfing();
-    detect_cycles();
-    calculate_scores();
-
-    printf("\n--------------------------------------------\n");
-    printf("Analysis Complete.\n");
-
+    printf("\nLoaded %d accounts successfully!\n", nodeCount);
     pause_screen();
+
+    int choice;
+
+    while (1) {
+        clear_screen();
+        print_banner();
+        show_menu();
+        scanf("%d", &choice);
+        getchar(); // clear newline
+
+        clear_screen();
+        print_banner();
+
+        switch (choice) {
+            case 1:
+                detect_smurfing();
+                pause_screen();
+                break;
+
+            case 2:
+                detect_cycles();
+                pause_screen();
+                break;
+
+            case 3:
+                calculate_scores();
+                pause_screen();
+                break;
+
+            case 4:
+                detect_smurfing();
+                detect_cycles();
+                calculate_scores();
+                pause_screen();
+                break;
+
+            case 5:
+                printf("Exiting ForensicFlow...\n");
+                return 0;
+
+            default:
+                printf("Invalid choice!\n");
+                pause_screen();
+        }
+    }
 
     return 0;
 }
